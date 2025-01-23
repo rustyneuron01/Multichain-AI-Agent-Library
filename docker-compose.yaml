@@ -1,0 +1,42 @@
+services:
+    eliza:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        stdin_open: true
+        tty: true
+        volumes:
+            - /var/run/tappd.sock:/var/run/tappd.sock
+            - eliza:/app/packages/client-twitter/src/tweetcache
+            - eliza:/app/db.sqlite
+        environment:
+            - OPENAI_API_KEY=
+            - REDPILL_API_KEY=
+            - ELEVENLABS_XI_API_KEY=
+            - ELEVENLABS_MODEL_ID=eleven_multilingual_v2
+            - ELEVENLABS_VOICE_ID=21m00Tcm4TlvDq8ikWAM
+            - ELEVENLABS_VOICE_STABILITY=0.5
+            - ELEVENLABS_VOICE_SIMILARITY_BOOST=0.9
+            - ELEVENLABS_VOICE_STYLE=0.66
+            - ELEVENLABS_VOICE_USE_SPEAKER_BOOST=false
+            - ELEVENLABS_OPTIMIZE_STREAMING_LATENCY=4
+            - ELEVENLABS_OUTPUT_FORMAT=pcm_16000
+            - TWITTER_DRY_RUN=false
+            - TWITTER_USERNAME=
+            - TWITTER_PASSWORD=
+            - TWITTER_EMAIL=
+            - BIRDEYE_API_KEY=
+            - SOL_ADDRESS=So11111111111111111111111111111111111111112
+            - SLIPPAGE=1
+            - SOLANA_RPC_URL=https://api.mainnet-beta.solana.com
+            - HELIUS_API_KEY=
+            - SERVER_PORT=3000
+            - WALLET_SECRET_SALT=secret_salt
+            # Refer to: https://github.com/elizaOS/eliza/blob/develop/.env.example for all available environment variables
+        ports:
+            - "3000:3000"
+            - "5173:5173"
+        restart: always
+
+volumes:
+    eliza:

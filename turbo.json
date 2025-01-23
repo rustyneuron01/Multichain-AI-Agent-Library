@@ -1,0 +1,72 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "tasks": {
+        "check-types": {
+            "dependsOn": ["build"]
+        },
+        "@elizaos/agent#check-types": {
+            "dependsOn": [
+                "@elizaos/plugin-solana#build",
+                "@elizaos/plugin-direct#build"
+            ]
+        },
+        "build": {
+            "outputs": ["dist/**"],
+            "dependsOn": ["^@elizaos/core#build"]
+        },
+        "@elizaos/client-direct#build": {
+            "outputs": ["dist/**"],
+            "dependsOn": [
+                "@elizaos/plugin-image-generation#build",
+                "@elizaos/plugin-tee-log#build"
+            ]
+        },
+        "@elizaos/plugin-solana#build": {
+            "outputs": ["dist/**"],
+            "dependsOn": [
+                "@elizaos/plugin-trustdb#build",
+                "@elizaos/plugin-tee#build"
+            ]
+        },
+        "@elizaos/plugin-nft-generation#build": {
+            "outputs": ["dist/**"],
+            "dependsOn": ["@elizaos/plugin-node#build"]
+        },
+        "@elizaos/client-direct#build": {
+            "outputs": ["dist/**"],
+            "dependsOn": ["@elizaos/plugin-tee-verifiable-log#build"]
+        },
+        "@elizaos/plugin-tee-verifiable-log#build": {
+            "outputs": ["dist/**"],
+            "dependsOn": ["@elizaos/core#build", "@elizaos/plugin-tee#build"]
+        },
+        "@elizaos/plugin-evm#build": {
+            "outputs": ["dist/**"],
+            "dependsOn": ["@elizaos/plugin-tee#build"]
+        },
+        "@elizaos/plugin-tee-log#build": {
+            "outputs": ["dist/**"],
+            "dependsOn": [
+                "@elizaos/plugin-tee#build",
+                "@elizaos/plugin-sgx#build"
+            ]
+        },
+        "@elizaos/plugin-quai#build": {
+            "outputs": ["dist/**"],
+            "dependsOn": [
+                "@elizaos/plugin-trustdb#build"
+            ]
+        },
+        "@elizaos/plugin-lightning#build": {
+            "outputs": ["dist/**"],
+            "dependsOn": ["@elizaos/plugin-tee#build"]
+        },
+        "eliza-docs#build": {
+            "outputs": ["build/**"]
+        },
+        "dev": {
+            "persistent": true,
+            "cache": false
+        }
+    }
+}

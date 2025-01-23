@@ -1,93 +1,135 @@
-# Rune Launchpad Typescript
----
-Rune Launchpad(Users can claim rune tokens)
+# **CRYPTO-AI-AGENT 🤖**
 
-## Prerequisites
----
-Before running the script, ensure you have the following dependencies installed:
+## ✨ **Features**
 
-- `bitcoinjs-lib`
-- `ecpair`
-- `@bitcoinerlab/secp256k1`
-- `axios`
-- `runelib`
--  `cbor`
+-   🛠️ **Full-featured Discord, Twitter, and Telegram connectors** for social media integration
+-   🔗 **Chat with Several ChatGPT Models** (Llama, Grok, OpenAI, Anthropic, Gemini, etc.)
+-   👥 **Multi-agent and room support** to create dynamic environments
+-   💾 **Retrievable memory and document store** for consistent interaction history
+-   💹 **Trade Tokens and Make Rewards** on Bitcoin, Solana & Ethereum Networks
 
-You can install them using npm:
+## 🎯 **Use Cases**
 
-```sh
-npm install bitcoinjs-lib ecpair @bitcoinerlab/secp256k1 axios runelib
+-   🤖 **Chatbots** for customer service, personal assistants, and more
+-   📈 **Business Process Handling** including automation and task management
+-   🧠 **Crypto Trading** with AI-driven strategies on Bitcoin, Solana, and Ethereum networks
+
+## 🚀 **Quick Start**
+
+### **Prerequisites**
+
+Make sure you have the following installed:
+
+-   [Python 2.7+](https://www.python.org/downloads/)
+-   [Node.js 23+](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+-   [pnpm](https://pnpm.io/installation)
+
+> **Note for Windows Users:** [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install-manual) is required.
+
+### **Use the Starter (Recommended)**
+
+Clone the repository and get started quickly:
+
+```bash
+git clone https://github.com/FCBtc1116/Crypto-AI-Agent.git
+cd Crypto-AI-Agent
+cp .env.example .env
+pnpm i && pnpm build && pnpm start
 ```
 
-## Configuration
----
-Ensure you have a `.env` file in your project root with the following variables:
+### **Manually Start AI Agent (For Advanced Users)**
 
-```plaintext
-PRIVATE_KEY=<your_private_key>
-MNEMONIC=<your_seed_mnemonic> (optional, if using SeedWallet)
+1. **Checkout the Latest Release**
+
+```bash
+git clone https://github.com/FCBtc1116/Crypto-AI-Agent.git
 ```
-### Usage
 
-1. **Initialize ECC Library**:
-   The script initializes the ECC library using `initEccLib` from `bitcoinjs-lib`.
+2. **Edit the .env file**
 
-2. **Wallet Setup**:
-   The script supports two types of wallets: `SeedWallet` and `WIFWallet`. Currently, the `WIFWallet` is used.
+Copy `.env.example` to `.env` and fill in the appropriate values.
 
-3. **Create Etching**:
-   The `etching` function is the main function that creates the recursive ordinal. It involves the following steps:
-   - Define the HTML content to be inscribed.
-   - Create an inscription object using `EtchInscription`.
-   - Define a Taproot script with the inscription and the wallet's public key.
-   - Generate a Taproot address and wait for UTXOs to be funded to this address.
-   - Create a Partially Signed Bitcoin Transaction (PSBT).
-   - Add inputs and outputs to the PSBT.
-   - Sign and broadcast the transaction.
-
-4. **Broadcast Transaction**:
-   The `signAndSend` function handles the signing and broadcasting of the transaction. It supports both node environment and browser environment.
-
-## Usage
-
-1. **Initialize ECC Library**:
-   The script initializes the ECC library using `initEccLib` from `bitcoinjs-lib`.
-
-2. **Wallet Setup**:
-   The script supports two types of wallets: `SeedWallet` and `WIFWallet`. Currently, the `WIFWallet` is used.
-
-3. **Minting with Taproot**:
-   The `mintWithTaproot` function is the main function that mints Runes. It involves the following steps:
-   - Define Runes to be minted.
-   - Create a Runestone with the specified Runes.
-   - Tweak the signer for Taproot key tweaking.
-   - Generate a Taproot address.
-   - Wait for UTXOs to be funded to this address.
-   - Create a Partially Signed Bitcoin Transaction (PSBT).
-   - Add inputs and outputs to the PSBT.
-   - Sign and broadcast the transaction.
-
-4. **Broadcast Transaction**:
-   The `signAndSend` function handles the signing and broadcasting of the transaction. It supports both node environment and browser environment.
-
-## Prerequisites
-
-Make sure you have the following dependencies installed:
-
-- `bitcoinjs-lib`
-- `ecpair`
-- `@bitcoinerlab/secp256k1`
-- `axios`
-- `cbor`
-- `runelib`
-
-You can install them using npm:
-
-```sh
-npm install bitcoinjs-lib ecpair @bitcoinerlab/secp256k1 axios cbor runelib
+```bash
+cp .env.example .env
 ```
-- The script is configured to work with the Bitcoin testnet.
-- Ensure that you have testnet coins available in the provided private key.
-- Adjust the fee and other parameters as needed.
+
+3. **Start Crypto AI**
+
+```bash
+pnpm i
+pnpm build
+pnpm start
+```
+
+If you encounter issues, you can clean and rebuild the project:
+
+```bash
+pnpm clean
+pnpm build
+pnpm start
+```
+
+### **Interact via Browser**
+
+Once project is running, you can interact with it via a browser:
+
+```bash
+pnpm start:client
+```
+
+Open the browser at the given URL to chat with your agent.
 
 ---
+
+### **Automatically Start AI Agent**
+
+You can also set up and run AI Agent automatically using the provided start script:
+
+```bash
+sh scripts/start.sh
+```
+
+### **Modify Character**
+
+1. **Load Custom Characters**
+
+    To load a custom character, use:
+
+    ```bash
+    pnpm start --characters="path/to/your/character.json"
+    ```
+
+2. **Connect with X (Twitter)**
+
+    To integrate with **X (formerly Twitter)**, modify the character JSON:
+
+    ```json
+    "clients": ["twitter"]
+    ```
+
+---
+
+### **Crypto Trading Setup**
+
+#### Supported Networks:
+
+-   **Bitcoin**
+-   **Solana**
+-   **Ethereum**
+
+#### Features:
+
+-   **AI-driven Trading Strategies**: Automatically trade and earn rewards on supported blockchain networks.
+-   **Secure Wallet Integration**: Connect your wallets to perform transactions directly via the AI agent.
+
+> **Note**: Ensure that you have set up the appropriate API keys for trading and connected your wallet before starting.
+
+---
+
+#### Additional Requirements
+
+If you face errors during setup, install the necessary dependencies such as **Sharp**:
+
+```bash
+pnpm install --include=optional sharp
+```
