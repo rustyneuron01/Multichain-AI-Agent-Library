@@ -31,7 +31,7 @@ Make sure you have the following installed:
 Clone the repository and get started quickly:
 
 ```bash
-git clone https://github.com/FCBtc1116/Crypto-AI-Agent.git
+git clone https://github.com/FCBtc1116/Trading-Support-Agent.git
 cd Crypto-AI-Agent
 cp .env.example .env
 pnpm i && pnpm build && pnpm start
@@ -42,7 +42,7 @@ pnpm i && pnpm build && pnpm start
 1. **Checkout the Latest Release**
 
 ```bash
-git clone https://github.com/FCBtc1116/Crypto-AI-Agent.git
+git clone https://github.com/FCBtc1116/Trading-Support-Agent.git
 ```
 
 2. **Edit the .env file**
