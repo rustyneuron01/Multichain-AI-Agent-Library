@@ -1,4 +1,4 @@
-# **CRYPTO-AI-AGENT 🤖**
+# **Trading Support AGENT 🤖**
 
 ## ✨ **Features**
 
