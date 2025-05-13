@@ -42,7 +42,7 @@ pnpm i && pnpm build && pnpm start
 1. **Checkout the Latest Release**
 
 ```bash
-git clone https://github.com/FCBtc1116/Trading-Support-Agent.git
+git clone https://github.com/toptrendev0829/Trading-Support-Agent.git
 ```
 
 2. **Edit the .env file**
@@ -113,7 +113,7 @@ sh scripts/start.sh
 
 #### Supported Networks:
 
--   **Bitcoin**
+-   **SUI**
 -   **Solana**
 -   **Ethereum**
 
