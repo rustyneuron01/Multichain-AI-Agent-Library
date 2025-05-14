@@ -34,7 +34,7 @@ Make sure you have the following installed:
 Clone the repository and get started quickly:
 
 ```bash
-git clone https://github.com/toptrendev0829/Multchain-AI-Agent-Library.git
+git clone https://github.com/toptrendev0829/Multichain-AI-Agent-Library.git
 cd Crypto-AI-Agent
 cp .env.example .env
 pnpm i && pnpm build && pnpm start
@@ -45,7 +45,7 @@ pnpm i && pnpm build && pnpm start
 1. **Checkout the Latest Release**
 
 ```bash
-git clone https://github.com/toptrendev0829/Multchain-AI-Agent-Library.git
+git clone https://github.com/toptrendev0829/Multichain-AI-Agent-Library.git
 ```
 
 2. **Edit the .env file**
