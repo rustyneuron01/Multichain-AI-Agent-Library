@@ -148,11 +148,8 @@ For full voice support, configure your environment using the **Web Speech API**,
 
 You can preview the agent interface via browser. Add assets like:
 
-```bash
-/public/image/sample.png
-```
 
-Include this in your frontend for branding or UI demos.
+![A streaming conversation between the user and an AI agent](/public/image/sample.png)
 
 ---
 
