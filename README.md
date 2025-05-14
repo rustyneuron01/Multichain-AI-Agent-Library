@@ -1,70 +1,67 @@
-# **Multichain AI Agent Library with Voice Support 🤖🎙️**
+# 🤖🎙️ Multichain AI Agent Library with Voice Support
 
-## ✨ **Features**
+A powerful, extensible AI agent framework designed for **multichain crypto interactions**, **voice-enabled interfaces**, and **cross-platform communication**. Seamlessly connect to **Twitter, Discord, Telegram**, and leverage LLMs like **OpenAI, Gemini, LLaMA, Grok**, and more.
 
-* 🛠️ **Full-featured Discord, Twitter, and Telegram connectors** for seamless social media integration
-* 🔗 **Chat with Several ChatGPT Models** (Llama, Grok, OpenAI, Anthropic, Gemini, etc.)
-* 👥 **Multi-agent and room support** to create dynamic environments for collaboration
-* 💾 **Retrievable memory and document store** for consistent interaction history
-* 💹 **Trade Tokens and Make Rewards** on Bitcoin, Solana, Ethereum & SUI Networks
-* 🎙️ **Voice-enabled Interaction**: Engage with AI agents using voice commands on supported platforms.
+---
 
-## 🎯 **Use Cases**
+## ✨ Features
 
-* 🤖 **Voice-activated Chatbots** for customer service, personal assistants, and more
-* 📈 **Business Process Automation** for task management and workflow handling
-* 🧠 **Crypto Trading** with AI-driven strategies across Bitcoin, Solana, Ethereum, and SUI networks
-* 🎤 **Voice-enabled Crypto Interactions**: Execute trades, check balances, and more using voice commands
+* 🛠️ **Full-featured Connectors** – Easily integrate with Discord, Twitter, and Telegram
+* 🔗 **LLM Flexibility** – Supports OpenAI, Gemini, LLaMA, Anthropic, Grok, and more
+* 👥 **Multi-Agent & Room Support** – Build collaborative AI environments with distinct personalities
+* 💾 **Memory & Document Store** – Persistent context and retrievable interaction history
+* 💹 **Multichain Crypto Trading** – Execute trades and earn rewards on Bitcoin, Solana, Ethereum, and SUI
+* 🎙️ **Voice Command Support** – Interact hands-free using browser-based or external voice tools
 
-## 🚀 **Quick Start**
+---
 
-### **Prerequisites**
+## 🎯 Use Cases
 
-Make sure you have the following installed:
+* 🤖 **Voice-Activated AI Agents** – Personal assistants, customer support bots, or crypto traders
+* 📈 **Business Process Automation** – Handle workflows, reminders, and task routing via AI agents
+* 🧠 **Crypto Automation** – AI-driven portfolio strategies on Solana, Ethereum, SUI, and Bitcoin
+* 🎤 **Voice-Controlled Trading** – Perform actions like sending tokens or checking balances with speech
 
-* [Python 2.7+](https://www.python.org/downloads/)
+---
+
+## 🚀 Quick Start
+
+### 📦 Prerequisites
+
 * [Node.js 23+](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+* [Python 2.7+](https://www.python.org/downloads/)
 * [pnpm](https://pnpm.io/installation)
-* [Web Speech API or Third-Party Voice Libraries](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
+* Voice support via [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API) or other compatible libraries
 
-> **Note for Windows Users:** [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install-manual) is required for certain functionalities.
+> 🪟 **Windows Users**: Please install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install-manual) for full functionality.
 
-### **Use the Starter (Recommended)**
+---
 
-Clone the repository and get started quickly:
+### 🔧 Installation (Recommended)
 
 ```bash
-git clone https://github.com/toptrendev0829/Multichain-AI-Agent-Library.git
-cd Crypto-AI-Agent
+git clone https://github.com/rustyneuron01/Multichain-AI-Agent-Library.git
+cd Multichain-AI-Agent-Library
 cp .env.example .env
-pnpm i && pnpm build && pnpm start
-```
-
-### **Manually Start AI Agent (For Advanced Users)**
-
-1. **Checkout the Latest Release**
-
-```bash
-git clone https://github.com/toptrendev0829/Multichain-AI-Agent-Library.git
-```
-
-2. **Edit the .env file**
-
-Copy `.env.example` to `.env` and fill in the appropriate values.
-
-```bash
-cp .env.example .env
-```
-
-3. **Start Crypto AI**
-
-```bash
-pnpm i
+pnpm install
 pnpm build
 pnpm start
 ```
 
-If you encounter issues, you can clean and rebuild the project:
+---
+
+### ⚙️ Advanced Manual Setup
+
+```bash
+git clone https://github.com/rustyneuron01/Multichain-AI-Agent-Library.git
+cd Multichain-AI-Agent-Library
+cp .env.example .env  # Configure API keys, tokens, and agent settings
+pnpm install
+pnpm build
+pnpm start
+```
+
+> Optional clean build:
 
 ```bash
 pnpm clean
@@ -72,72 +69,94 @@ pnpm build
 pnpm start
 ```
 
-### **Interact via Browser or Voice**
+---
 
-Once the project is running, you can interact with it either through a browser or with voice commands:
+## 🧠 Agent Interaction
+
+### Via Browser or Voice
 
 ```bash
 pnpm start:client
 ```
 
-Open the browser at the given URL to chat with your agent, or use your voice-enabled device for hands-free interaction.
+* Open your browser and navigate to the provided local URL.
+* Interact through chat or supported voice commands.
 
 ---
 
-### **Automatically Start AI Agent**
+### 📜 Auto Start Script
 
-You can also set up and run the AI Agent automatically using the provided start script:
+For simplified deployment:
 
 ```bash
 sh scripts/start.sh
 ```
 
-### **Modify Character**
+---
 
-1. **Load Custom Characters**
+## 🧙 Custom Agent Configuration
 
-   To load a custom character, use:
+### 1. Load Custom Characters
 
-   ```bash
-   pnpm start --characters="path/to/your/character.json"
-   ```
+```bash
+pnpm start --characters="path/to/your/character.json"
+```
 
-2. **Voice Support Integration**
+### 2. Enable Voice Support in Character File
 
-   To enable voice interaction, ensure your character JSON includes voice-enabled commands:
-
-   ```json
-   "voice": true,
-   "clients": ["twitter", "discord", "telegram"]
-   ```
+```json
+{
+  "voice": true,
+  "clients": ["twitter", "discord", "telegram"]
+}
+```
 
 ---
 
-### **Crypto Trading Setup**
+## 💹 Crypto Trading Integration
 
-#### Supported Networks:
+### 🔗 Supported Chains
 
-* **SUI**
 * **Solana**
 * **Ethereum (EVM)**
+* **SUI**
 * **Bitcoin**
 
-#### Features:
+### ⚙️ Trading Features
 
-* **AI-driven Trading Strategies**: Automatically trade and earn rewards across multiple blockchain networks.
-* **Secure Wallet Integration**: Connect your wallets to perform transactions directly via the AI agent.
-* **Voice-enabled Crypto Interactions**: Perform crypto trading and wallet transactions with simple voice commands.
+* AI-powered trade execution
+* Portfolio monitoring and real-time price feedback
+* Voice-enabled token transfers and trading commands
 
-> **Note**: Ensure that you have set up the appropriate API keys for trading and connected your wallet before starting.
+> Ensure your `.env` contains all necessary **API keys** and **wallet credentials**.
 
 ---
 
-#### Additional Requirements
+### 🧰 Additional Setup Notes
 
-If you encounter errors during setup, install the necessary dependencies such as **Sharp**:
+Some modules (e.g., image processing or voice support) may require native dependencies:
 
 ```bash
 pnpm install --include=optional sharp
 ```
 
-Additionally, integrate voice support by configuring your environment with the Web Speech API or your preferred voice library to handle speech recognition and responses.
+For full voice support, configure your environment using the **Web Speech API**, or install preferred voice recognition libraries.
+
+---
+
+## 🖼️ Sample UI
+
+You can preview the agent interface via browser. Add assets like:
+
+```bash
+/public/image/sample.png
+```
+
+Include this in your frontend for branding or UI demos.
+
+---
+
+## 📫 Contact
+
+Maintained by [**RustyNeuron**](https://github.com/rustyneuron01)
+Twitter: [@rustyneuron\_01](https://x.com/rustyneuron_01)

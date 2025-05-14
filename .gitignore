@@ -1,70 +1,43 @@
-node_modules
-/out
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-.env
-.env.production
-.env.local
-.env_main
-concatenated-output.ts
-embedding-cache.json
-packages/plugin-buttplug/intiface-engine
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 
-node-compile-cache
+# testing
+/coverage
 
-.idea
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
 .DS_Store
+*.pem
 
-dist/
-# Allow models directory but ignore model files
-models/*.gguf
-pgLite/
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-cookies.json
+# local env files
+.env*.local
 
-db.sqlite
-searches/
-tweets/
+# vercel
+.vercel
 
-*.gguf
-*.onnx
-*.wav
-*.mp3
+# typescript
+*.tsbuildinfo
+next-env.d.ts
 
-logs/
-
-test-report.json
-content_cache/
-test_data/
-tokencache/
-tweetcache/
-twitter_cookies.json
-timeline_cache.json
-
-*.sqlite
-
-characters/
-
-packages/core/src/providers/cache
-packages/core/src/providers/cache/*
-cache/*
-packages/plugin-coinbase/src/plugins/transactions.csv
-
-tsup.config.bundled_*.mjs
-
-.turbo
-.cursorrules
-.pnpm-store
-instructions.md
-wallet_data.txt
-
-coverage
-.eslintcache
-
-agent/content
-
-eliza.manifest
-eliza.manifest.sgx
-eliza.sig
-packages/plugin-nvidia-nim/extra
-packages/plugin-nvidia-nim/old_code
-packages/plugin-nvidia-nim/docs
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.env
