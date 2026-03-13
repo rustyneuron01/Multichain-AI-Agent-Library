@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  validator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: score-vision-validator:latest
+    container_name: score-vision-validator
+    restart: unless-stopped
+    
+    environment:
+      # Required: OpenAI API key
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      
+      # Bittensor configuration
+      NETUID: ${NETUID:-44}
+      SUBTENSOR_NETWORK: ${SUBTENSOR_NETWORK:-finney}
+      SUBTENSOR_ADDRESS: ${SUBTENSOR_ADDRESS:-wss://entrypoint-finney.opentensor.ai:443}
+      
+      # Wallet configuration
+      WALLET_NAME: ${WALLET_NAME:-default}
+      HOTKEY_NAME: ${HOTKEY_NAME:-default}
+      
+      # Validator configuration
+      MIN_STAKE_THRESHOLD: ${MIN_STAKE_THRESHOLD:-2}
+      VALIDATOR_PORT: ${VALIDATOR_PORT:-8000}
+      VALIDATOR_HOST: ${VALIDATOR_HOST:-0.0.0.0}
+      
+      # # Database configuration
+      # DB_PATH: ${DB_PATH:-/app/data/validator.db}
+      
+      # Logging
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    
+    volumes:
+      # Data directory
+      - ./data:/app/data
+      # Logs directory
+      - ./logs:/app/logs
+      # Debug frames directory
+      - ./debug_frames:/app/debug_frames
+      # Optional: Mount wallet directory if using local wallets
+      - ${HOME}/.bittensor/wallets:/home/validator/.bittensor/wallets:ro
+    
+    ports:
+      - "8000:8000" 

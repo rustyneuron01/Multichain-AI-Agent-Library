@@ -1,159 +1,149 @@
-# 🤖🎙️ Multichain AI Agent Library with Voice Support
+# Score Vision — Real-Time Football Game State Recognition
 
-A powerful, extensible AI agent framework designed for **multichain crypto interactions**, **voice-enabled interfaces**, and **cross-platform communication**. Seamlessly connect to **Twitter, Discord, Telegram**, and leverage LLMs like **OpenAI, Gemini, LLaMA, Grok**, and more.
-
----
-
-## ✨ Features
-
-* 🛠️ **Full-featured Connectors** – Easily integrate with Discord, Twitter, and Telegram
-* 🔗 **LLM Flexibility** – Supports OpenAI, Gemini, LLaMA, Anthropic, Grok, and more
-* 👥 **Multi-Agent & Room Support** – Build collaborative AI environments with distinct personalities
-* 💾 **Memory & Document Store** – Persistent context and retrievable interaction history
-* 💹 **Multichain Crypto Trading** – Execute trades and earn rewards on Bitcoin, Solana, Ethereum, and SUI
-* 🎙️ **Voice Command Support** – Interact hands-free using browser-based or external voice tools
+**Score Vision** is a computer vision system for real-time football video analysis. It reduces the cost and time of manual game-state annotation (player/ball/referee tracking, pitch keypoints) by an order of magnitude, targeting sports analytics, broadcast, and data providers. The pipeline is designed to process multiple HD video streams in parallel via distributed inference nodes, with lightweight validation to keep quality high while minimizing compute overhead.
 
 ---
 
-## 🎯 Use Cases
+## Sample output
 
-* 🤖 **Voice-Activated AI Agents** – Personal assistants, customer support bots, or crypto traders
-* 📈 **Business Process Automation** – Handle workflows, reminders, and task routing via AI agents
-* 🧠 **Crypto Automation** – AI-driven portfolio strategies on Solana, Ethereum, SUI, and Bitcoin
-* 🎤 **Voice-Controlled Trading** – Perform actions like sending tokens or checking balances with speech
+The pipeline takes a video stream and returns per-frame detections and tracking (players, ball, referee, goalkeeper, pitch keypoints). Example output on a football clip:
 
----
+<video src="64aacaf72b1948b88a61982970d81c-10M.mp4" controls width="640" muted></video>
 
-## 🚀 Quick Start
-
-### 📦 Prerequisites
-
-* [Node.js 23+](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-* [Python 2.7+](https://www.python.org/downloads/)
-* [pnpm](https://pnpm.io/installation)
-* Voice support via [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API) or other compatible libraries
-
-> 🪟 **Windows Users**: Please install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install-manual) for full functionality.
+_Sample video: [64aacaf72b1948b88a61982970d81c-10M.mp4](64aacaf72b1948b88a61982970d81c-10M.mp4)_
 
 ---
 
-### 🔧 Installation (Recommended)
+## Overview
 
-```bash
-git clone https://github.com/rustyneuron01/Multichain-AI-Agent-Library.git
-cd Multichain-AI-Agent-Library
-cp .env.example .env
-pnpm install
-pnpm build
-pnpm start
-```
+The framework combines **detection and tracking** (YOLO, HRNet, OSNet, ByteTrack) with **lightweight validation** (CLIP and keypoint checks) so that complex video analysis can run at scale without re-running full inference for verification. The result is fast, cost-effective game-state recognition suitable for live or batch processing.
 
----
+### Why football?
 
-### ⚙️ Advanced Manual Setup
+Football is a demanding domain: high-stakes, real-time decisions, crowded scenes, and varying camera angles. It is an ideal testbed for robust detection and tracking. The same pipeline design extends to other sports and general video analytics.
 
-```bash
-git clone https://github.com/rustyneuron01/Multichain-AI-Agent-Library.git
-cd Multichain-AI-Agent-Library
-cp .env.example .env  # Configure API keys, tokens, and agent settings
-pnpm install
-pnpm build
-pnpm start
-```
+### Market context
 
-> Optional clean build:
-
-```bash
-pnpm clean
-pnpm build
-pnpm start
-```
+Manual video annotation in sports can cost **$10–55 per minute**, with complex scenarios requiring up to **four hours of human labelling per minute** of footage. Score Vision aims to cut these costs by **10× to 100×** while improving speed and accuracy, serving clubs, broadcasters, betting operators, and analytics providers.
 
 ---
 
-## 🧠 Agent Interaction
+## Technologies
 
-### Via Browser or Voice
-
-```bash
-pnpm start:client
-```
-
-* Open your browser and navigate to the provided local URL.
-* Interact through chat or supported voice commands.
-
----
-
-### 📜 Auto Start Script
-
-For simplified deployment:
-
-```bash
-sh scripts/start.sh
-```
+| Category                 | Technologies                                                                                                                                                    |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Detection & tracking** | YOLO (Ultralytics), HRNet, OSNet — custom-trained on football datasets for player, goalkeeper, referee, and ball detection; ByteTrack for multi-object tracking |
+| **Pitch / keypoints**    | YOLO-based pitch detection; keypoint estimation for field geometry                                                                                              |
+| **Backend & API**        | Python, FastAPI, Uvicorn; async frame streaming; request verification and concurrency control                                                                   |
+| **Video & inference**    | OpenCV, supervision; async video download and frame-by-frame streaming; GPU (CUDA) / Apple Silicon (MPS) support                                                |
+| **Validation**           | CLIP and VLM-based checks for bounding-box semantics; keypoint stability and reprojection scoring                                                               |
+| **Infrastructure**       | Hugging Face (model hosting); SQLite for challenge/response storage; PM2/Docker for deployment                                                                  |
 
 ---
 
-## 🧙 Custom Agent Configuration
+## Model choices
 
-### 1. Load Custom Characters
-
-```bash
-pnpm start --characters="path/to/your/character.json"
-```
-
-### 2. Enable Voice Support in Character File
-
-```json
-{
-  "voice": true,
-  "clients": ["twitter", "discord", "telegram"]
-}
-```
+- **YOLO:** Single-stage detection suited to real-time video; strong accuracy/speed trade-off for players and ball; tunable confidence and IoU for production.
+- **HRNet:** High-resolution feature maps across scales → better localization and keypoint/pose-style outputs; helps in crowded scenes and with small objects (e.g. ball, distant players).
+- **OSNet:** Lightweight person re-identification; improves identity consistency across frames when combined with ByteTrack, reducing ID switches in multi-player tracking.
+- **Custom training:** Models are trained on football-specific data (players, referees, goalkeepers, ball, pitch) to maximize accuracy and robustness to camera angles, lighting, and occlusions typical in match footage.
 
 ---
 
-## 💹 Crypto Trading Integration
+## Inference pipeline
 
-### 🔗 Supported Chains
-
-* **Solana**
-* **Ethereum (EVM)**
-* **SUI**
-* **Bitcoin**
-
-### ⚙️ Trading Features
-
-* AI-powered trade execution
-* Portfolio monitoring and real-time price feedback
-* Voice-enabled token transfers and trading commands
-
-> Ensure your `.env` contains all necessary **API keys** and **wallet credentials**.
+1. **Ingest:** Receive video URL → download (with retries/timeouts) → validate file (OpenCV).
+2. **Frame stream:** Stream frames asynchronously (OpenCV `VideoCapture`) with device-specific timeouts to avoid stalls on CPU/GPU.
+3. **Per-frame inference:**
+   - **Pitch:** YOLO pitch model → extract pitch keypoints (field lines, corners) for downstream geometry.
+   - **Players / ball / referee / goalkeeper:** YOLO (and, where used, HRNet/OSNet) detection → confidence threshold and NMS → ByteTrack to assign stable IDs across frames.
+   - **Output:** Per-frame list of objects (bbox, class_id, tracker_id) and keypoints; coordinates rounded for compact JSON.
+4. **Response:** Aggregate frames + processing time; optional signing/verification for integration with distributed or API-driven systems.
 
 ---
 
-### 🧰 Additional Setup Notes
+## Lightweight validation
 
-Some modules (e.g., image processing or voice support) may require native dependencies:
+Validation ensures output quality without re-running full inference:
 
-```bash
-pnpm install --include=optional sharp
-```
+1. **Frame filtering & keypoint validation**  
+   Frames are filtered using pitch detection. A global scoring system evaluates keypoint accuracy (stability, plausibility, reprojection error).
 
-For full voice support, configure your environment using the **Web Speech API**, or install preferred voice recognition libraries.
+2. **Semantic bounding-box assessment**  
+   Selected frames are checked with CLIP-based object verification (players, ball, referees, goalkeepers). The result is a confidence-weighted quality score.
 
----
-
-## 🖼️ Sample UI
-
-You can preview the agent interface via browser. Add assets like:
-
-
-![A streaming conversation between the user and an AI agent](/public/image/sample.png)
+Scores are combined and normalized (0–1) for quality control and optional use in ranking or routing.
 
 ---
 
-## 📫 Contact
+## Main technical challenge: duplicate detections
 
-Maintained by [**RustyNeuron**](https://github.com/rustyneuron01)
-Twitter: [@rustyneuron\_01](https://x.com/rustyneuron_01)
+**Problem:** During bounding-box inference, the same player or object was often detected multiple times in overlapping boxes, leading to duplicate detections and noisy tracking.
+
+**Approach:**
+
+- **Confidence (score) threshold:** Only high-confidence detections are kept, reducing duplicates while retaining true positives.
+- **Typical range:** Confidence (ROI score) is set between **0.7 and 0.9** in production; the exact value is chosen per model and dataset from validation metrics (precision/recall, tracking quality).
+- **Trade-off:** Lower thresholds increase recall but add duplicate detections; higher thresholds reduce duplicates but can drop valid detections under occlusion or motion blur. Threshold choice depends on model training output (e.g. confidence distribution and calibration).
+
+---
+
+## Performance metrics
+
+**Game State Higher Order Tracking Accuracy (GS-HOTA)** is used for quality assessment:
+
+- **GS-HOTA = √(Detection × Association)**
+- **Detection:** Object detection accuracy.
+- **Association:** Tracking consistency across frames.
+
+Evaluation covers detection and tracking accuracy, consistency over time, and response latency. The system is designed to support quality-weighted scoring and volume-based contribution metrics where the pipeline is run in a distributed or multi-instance setup.
+
+---
+
+## Architecture (high level)
+
+- **Inference nodes:** Receive video streams (or URLs), run the detection-and-tracking pipeline per frame, and return structured JSON (objects, keypoints, IDs).
+- **Validation layer:** Optional lightweight checks (CLIP, keypoint scoring) on a subset of frames to verify quality without full re-inference.
+- **API & storage:** FastAPI for ingestion and responses; SQLite or similar for challenge/response and state; optional Hugging Face for model hosting.
+
+No blockchain or token terminology is required to run or integrate the pipeline; it can be deployed as a standard microservice or multi-instance API.
+
+---
+
+## Quick start
+
+1. Ensure system requirements (Python 3.10+, GPU recommended for real-time inference; see `min_compute.yaml` for reference specs).
+2. Clone the repository and install dependencies (see setup guides in the repo).
+3. Configure environment (API keys, model paths, device).
+4. Run the inference service and send video URLs or streams to the API.
+
+Detailed setup for **inference nodes** (running the detection pipeline) and **validation / quality-check services** is in the documentation:
+
+- [Inference node setup](miner/README.md)
+- [Validation / quality-check setup](validator/README.md)
+
+_(These guides may use internal role names; functionally they describe “run the detector” and “run the validator” services.)_
+
+---
+
+## Roadmap
+
+- **Current:** Game State Recognition pipeline, VLM-based validation, benchmarking.
+- **Planned:** Human-in-the-loop validation, additional footage types (e.g. grassroots), dashboard and leaderboard.
+- **Future:** Action spotting, match event captioning, advanced player tracking, integration APIs, adaptation to other sports, developer tools and SDKs.
+
+---
+
+## Research
+
+The paper **["Score Vision: Enabling Complex Computer Vision Through Lightweight Validation - A Game State Recognition Framework for Live Football"](https://drive.google.com/file/d/1oADURxxIZK0mTEqJPDudgXypohtFNkON/view)** describes the lightweight validation approach and its role in reducing computational overhead while maintaining accuracy at scale.
+
+---
+
+## Contributing
+
+Contributions are welcome. See [Contributing Guidelines](CONTRIBUTING.md) for code style, pull request process, and testing.
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.

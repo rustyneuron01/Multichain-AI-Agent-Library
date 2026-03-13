@@ -1,0 +1,114 @@
+# Git and version control
+.git
+.gitignore
+.gitattributes
+
+# Python cache and build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Documentation
+*.md
+docs/
+README*
+
+# Docker files (avoid recursion)
+Dockerfile*
+docker-compose*.yml
+docker-compose*.yaml
+.dockerignore
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Data directories (will be mounted as volumes)
+data/
+logs/
+debug_frames/
+*.db
+*.db-journal
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Large files and media
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.svg
+
+# Jupyter notebooks
+.ipynb_checkpoints
+
+# Misc
+.mypy_cache/
+.dmypy.json
+dmypy.json 

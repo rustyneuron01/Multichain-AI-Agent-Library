@@ -1,0 +1,90 @@
+version: 1.0
+
+roles:
+  validator:
+    compute:
+      cpu:
+        min_cores: 4
+        recommended_cores: 8
+        architecture: "x86_64"
+      memory:
+        min_ram: "8GB"
+        recommended_ram: "16GB"
+      storage:
+        min_space: "50GB"
+        recommended_space: "200GB"
+        type: "SSD"
+      network:
+        min_bandwidth: "100Mbps"
+        recommended_bandwidth: "1Gbps"
+        monthly_traffic: "500GB-1TB"
+        max_latency: "100ms"
+    os:
+      supported:
+        - "Ubuntu 20.04+"
+        - "macOS 12+"
+      recommended: "Ubuntu 22.04 LTS"
+
+  miner:
+    compute:
+      cpu:
+        min_cores: 4
+        recommended_cores: 8
+        architecture: "x86_64"
+      gpu:
+        recommended: "NVIDIA RTX 3060"
+        min_vram: "12GB"
+      memory:
+        min_ram: "8GB"
+        recommended_ram: "16GB"
+      storage:
+        min_space: "20GB"
+        recommended_space: "50GB"
+        type: "NVMe SSD"
+      network:
+        min_bandwidth: "100Mbps"
+        recommended_bandwidth: "1Gbps"
+    os:
+      supported:
+        - "Ubuntu 20.04+"
+        - "macOS 12+"
+      recommended: "Ubuntu 22.04 LTS"
+
+performance_benchmarks:
+  miner:
+    cpu_only:
+      processing_time: 9138
+      fps: 0.08
+      viability: "not_recommended"
+    apple_silicon:
+      processing_time: 140
+      fps: 3.49
+      viability: "development_only"
+    nvidia_gpu:
+      processing_time: 22
+      fps: 22.36
+      viability: "production_ready"
+
+deployment_recommendations:
+  validator:
+    production:
+      cpu: "AMD Ryzen 7/Intel i7"
+      ram: "32GB"
+      storage: "500GB NVMe SSD"
+      network: "1Gbps dedicated"
+    minimum:
+      cpu: "AMD Ryzen 5/Intel i5"
+      ram: "16GB"
+      storage: "200GB SSD"
+      network: "100Mbps stable"
+  miner:
+    production:
+      gpu: "NVIDIA RTX 4090 24GB"
+      ram: "32GB"
+      cpu_cores: 12
+      storage: "NVMe SSD"
+    budget:
+      gpu: "NVIDIA RTX 3060 12GB"
+      ram: "16GB"
+      cpu_cores: 8
+      storage: "SSD"
