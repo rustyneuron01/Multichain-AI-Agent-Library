@@ -8,9 +8,9 @@
 
 The pipeline takes a video stream and returns per-frame detections and tracking (players, ball, referee, goalkeeper, pitch keypoints). Example output on a football clip:
 
-<video src="64aacaf72b1948b88a61982970d81c-10M.mp4" controls width="640" muted></video>
+![Sample output — football game state recognition](sample-output.gif)
 
-_Sample video: [64aacaf72b1948b88a61982970d81c-10M.mp4](64aacaf72b1948b88a61982970d81c-10M.mp4)_
+*Full video: [64aacaf72b1948b88a61982970d81c-10M.mp4](64aacaf72b1948b88a61982970d81c-10M.mp4)*
 
 ---
 
